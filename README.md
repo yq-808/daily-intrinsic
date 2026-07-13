@@ -1,4 +1,4 @@
-# too-simple-val
+# plain-intrinsic
 
 Dated, back-of-the-envelope **intrinsic-value reports** for stocks — one HTML
 page per stock, per date, published as a static site via GitHub Pages.
@@ -10,7 +10,7 @@ shareable web pages.
 ## Layout
 
 ```
-too-simple-val/
+plain-intrinsic/
 ├── skills/
 │   ├── dcf/                     # DCF (FCFF) valuation skill + engine
 │   └── megawatt-pe-valuation/   # Earnings × P/E model for power / AI-infra
@@ -55,7 +55,7 @@ The repo is private for now. When you're ready to publish:
 2. **Source:** *Deploy from a branch*.
 3. **Branch:** `main`, **Folder:** `/docs`.
 
-The site then lives at `https://<owner>.github.io/too-simple-val/`. (While the
+The site then lives at `https://<owner>.github.io/plain-intrinsic/`. (While the
 repo is private, GitHub Pages requires a paid plan; making the repo public will
 serve it for free.)
 
