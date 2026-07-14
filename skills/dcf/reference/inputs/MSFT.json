@@ -18,7 +18,7 @@
       "name": "Bear",
       "probability": 0.13,
       "base_year": {
-        "nwc_percent": 0.16
+        "nwc_percent": 0.02
       },
       "assumptions": {
         "growth_rates": [
@@ -74,7 +74,7 @@
       "name": "Base",
       "probability": 0.45,
       "base_year": {
-        "nwc_percent": 0.15
+        "nwc_percent": 0.01
       },
       "assumptions": {
         "growth_rates": [
@@ -130,7 +130,7 @@
       "name": "Bull",
       "probability": 0.42,
       "base_year": {
-        "nwc_percent": 0.14
+        "nwc_percent": 0.0
       },
       "assumptions": {
         "growth_rates": [

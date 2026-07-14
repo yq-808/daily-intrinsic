@@ -1,0 +1,75 @@
+{
+  "symbol": "MSFT",
+  "drivers": [
+    {
+      "key": "growth",
+      "label": "Revenue growth (Yr 1–10)",
+      "verdict": "Defensible",
+      "comment": "MSFT grew ~15% in FY25, led by Azure (~30%+) and Copilot/AI monetization. Each scenario fades from a Yr-1 rate to mature growth by Yr 10. Base ≈ trend; Bull assumes AI/Cloud keeps re-accelerating; Bear is conservative."
+    },
+    {
+      "key": "margin",
+      "label": "EBIT margin (Yr 1–10)",
+      "verdict": "On the optimistic edge",
+      "comment": "MSFT already runs a ~45–46% operating margin — the highest of the mega-caps. Scenarios hold roughly flat to slightly expanding despite heavy AI capex. The Bull path ending near 49% would be an all-time high — plausible only if cloud/AI scale drives real operating leverage."
+    },
+    {
+      "key": "capex",
+      "label": "Capex (Yr 1–10, % rev)",
+      "verdict": "Judgment call (AI capex)",
+      "comment": "Very elevated near-term for the AI data-centre build-out (FY25 capex ran ~25%+ of revenue), then declining. That decline path is the single biggest swing factor in the whole model."
+    },
+    {
+      "key": "da",
+      "label": "D&A (% of revenue)",
+      "verdict": "Minor input",
+      "comment": "~8% of revenue — a touch higher than peers because the data-centre build-out is now depreciating. Modeled stable; not a swing factor."
+    },
+    {
+      "key": "nwc",
+      "label": "Net working capital (% of revenue)",
+      "verdict": "Corrected → now realistic",
+      "comment": "Now a small net drag (0–2% of revenue). MSFT carries a large unearned/deferred-revenue balance (~$60B+) that funds much of its receivables growth, so incremental working capital is roughly neutral — arguably a source of cash. The earlier 14–16% figure overstated the drag and understated value — this is the fix (the same correction applied to GOOGL)."
+    },
+    {
+      "key": "tax",
+      "label": "Tax rate",
+      "verdict": "Slightly conservative",
+      "comment": "21% US statutory; MSFT's effective rate has run ~18–19%, so this trims NOPAT a touch (biases value down)."
+    },
+    {
+      "key": "rf",
+      "label": "Risk-free rate",
+      "comment": "≈ the 10-year Treasury yield. ~4% is consistent with current levels."
+    },
+    {
+      "key": "erp",
+      "label": "Equity risk premium",
+      "verdict": "Market-calibrated",
+      "comment": "3.9–4.3% ≈ Damodaran's implied ERP of 4.23% (2026). This is where current market conditions legitimately enter the model."
+    },
+    {
+      "key": "beta",
+      "label": "Beta",
+      "comment": "~0.95–1.05; MSFT roughly tracks the market, slightly defensive in the Bull case (less perceived risk)."
+    },
+    {
+      "key": "wacc",
+      "label": "WACC (derived)",
+      "verdict": "Solid",
+      "comment": "CAPM build-up nets to ~7.6–8.6% across scenarios. Lower WACC in Bull compounds with higher growth to lift value."
+    },
+    {
+      "key": "terminal_g",
+      "label": "Terminal growth",
+      "verdict": "Base OK · Bull near the ceiling",
+      "comment": "Terminal g should not exceed the ~4% risk-free / long-run nominal GDP. Bull's 3.3% sits comfortably below that edge."
+    },
+    {
+      "key": "probability",
+      "label": "Scenario probability",
+      "verdict": "Bull-tilted (AI optimism)",
+      "comment": "Weights already lean bullish (Bull 42% / Base 45%). MSFT's premium multiple implies even more weight on the Bull path — that's the AI/cloud optimism, priced."
+    }
+  ]
+}
