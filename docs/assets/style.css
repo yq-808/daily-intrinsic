@@ -78,8 +78,6 @@ table.compact td { padding: 8px 12px; }
 .verdict { display: inline-block; font-weight: 700; font-size: 12px;
   padding: 1px 8px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); }
 .read-note { color: var(--muted); font-size: 13px; }
-.panel-note { color: var(--muted); font-size: 13px; margin: 12px 0 0; max-width: 68ch; }
-#dcf-comps .meta { margin-bottom: 10px; }
 
 /* Assumptions: one table per input, three scenario rows (Bear/Base/Bull) */
 .assump { padding: 18px 0; border-bottom: 1px solid var(--border); }

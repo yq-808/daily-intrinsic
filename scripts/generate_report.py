@@ -32,8 +32,7 @@ REPORTS_DIR = DOCS / "reports"
 MANIFEST = REPORTS_DIR / "manifest.json"
 
 # Site conventions applied by docs/assets/dcf.js (shown on each page).
-CONVENTIONS = ("Mid-year discounting convention. Comps cross-check values "
-               "forward EPS at peer multiples — no live market price is used.")
+CONVENTIONS = "Mid-year discounting convention. Valuation only — no live market price is used."
 
 
 # --------------------------------------------------------------------------- #
@@ -65,15 +64,6 @@ def render_report(symbol, data, date_str, notes=None):
     sym = escape(symbol)
     method = escape(method_for(data))
     notes = notes or {}
-
-    comps_section = ""
-    if notes.get("comps"):
-        comps_section = """
-  <section>
-    <h2>Comps cross-check <span class="sub">relative valuation</span></h2>
-    <div id="dcf-comps"></div>
-  </section>
-"""
 
     drivers_section = ""
     if notes.get("drivers"):
@@ -126,7 +116,7 @@ def render_report(symbol, data, date_str, notes=None):
     <noscript><p class="meta">This report computes its valuation in the browser;
     enable JavaScript to see the numbers.</p></noscript>
   </section>
-{comps_section}{drivers_section}
+{drivers_section}
   <section>
     <h2>Key inputs</h2>
     <div class="table-scroll">
@@ -267,8 +257,6 @@ table.compact td { padding: 8px 12px; }
 .verdict { display: inline-block; font-weight: 700; font-size: 12px;
   padding: 1px 8px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); }
 .read-note { color: var(--muted); font-size: 13px; }
-.panel-note { color: var(--muted); font-size: 13px; margin: 12px 0 0; max-width: 68ch; }
-#dcf-comps .meta { margin-bottom: 10px; }
 
 /* Assumptions: one table per input, three scenario rows (Bear/Base/Bull) */
 .assump { padding: 18px 0; border-bottom: 1px solid var(--border); }
@@ -321,7 +309,7 @@ def main():
     if data is None:
         sys.exit(f"Error: no DCF input file for {symbol} at {input_path}")
 
-    # Optional commentary + comps sidecar (drives the extra panels).
+    # Optional commentary sidecar (drives the assumptions panel).
     notes = load_json(DCF_REF / "notes" / f"{symbol}.json")
 
     # Write report page (inputs embedded; math runs in the browser).

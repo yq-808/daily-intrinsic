@@ -28,8 +28,8 @@
     {
       "key": "nwc",
       "label": "Net working capital (% of revenue)",
-      "verdict": "Too high → biases value DOWN",
-      "comment": "GOOGL actually runs near-zero / negative working capital (deferred revenue funds it). Modelling a 15–18% drag understates value — the model is conservative here."
+      "verdict": "Corrected → now realistic",
+      "comment": "Now a small net drag (1–3% of revenue). GOOGL's receivables growth is largely offset by payables, accruals, and deferred revenue, so incremental working capital is roughly neutral. The earlier 15–18% figure overstated the drag and understated value — this is the fix."
     },
     {
       "key": "tax",
@@ -71,15 +71,5 @@
       "verdict": "Bull-tilted (AI optimism)",
       "comment": "Weights already lean bullish (Bull 40% / Base 45%). The market's high-20s× multiple implies even more weight on the Bull path — that's the AI fever, priced."
     }
-  ],
-  "comps": {
-    "forward_eps": 13.27,
-    "eps_basis": "FY2026E consensus EPS $13.27 (FY25 actual $10.91, +22%)",
-    "multiples": [
-      { "label": "Sector median", "pe": 22 },
-      { "label": "Quality mega-cap tech", "pe": 25 },
-      { "label": "AI-leader premium", "pe": 28 }
-    ],
-    "note": "The chosen multiple is where 'market hotness' legitimately belongs — not a fudge factor on the DCF. At 25× (a quality-tech multiple) comps land almost exactly on the mid-year DCF, so both methods triangulate near the same value. The market currently pays a high-20s× forward multiple; that premium over the central estimate IS the AI-regime optimism, made explicit and auditable rather than hidden in a sentiment multiplier."
-  }
+  ]
 }

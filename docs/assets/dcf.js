@@ -1,10 +1,9 @@
 /*
- * plain-intrinsic — client-side DCF engine + comps cross-check.
+ * plain-intrinsic — client-side DCF engine.
  *
  * A faithful port of skills/dcf/scripts/dcf_calculator.py (FCFF methodology),
- * with two professional refinements applied in the browser:
- *   - mid-year discounting convention (cash flows arrive mid-year on average),
- *   - a relative-valuation (comps) cross-check: forward EPS x peer P/E.
+ * using the mid-year discounting convention (cash flows arrive mid-year on
+ * average).
  *
  * The static pages ship the *inputs* only; this script turns them into the
  * final valuation. Valuation only — no live market price.
@@ -50,11 +49,6 @@
   function price(x) {
     if (x === null || x === undefined || isNaN(x)) return "—";
     return "$" + x.toFixed(2);
-  }
-
-  function multipleFmt(x) {
-    if (x === null || x === undefined || isNaN(x)) return "—";
-    return x.toFixed(1) + "×";
   }
 
   // -------------------------------------------------------------------- WACC
@@ -432,52 +426,6 @@
     }
   }
 
-  // Relative-valuation cross-check: forward EPS x a range of peer multiples.
-  // The chosen multiple is where "market hotness" legitimately enters.
-  function renderComps(comps, dcfIntrinsic) {
-    var mount = document.getElementById("dcf-comps");
-    if (!mount || !comps || !Array.isArray(comps.multiples)) return;
-    var eps = comps.forward_eps;
-
-    var table = document.createElement("table");
-    var thead = document.createElement("thead");
-    var htr = document.createElement("tr");
-    htr.appendChild(el("th", null, "Multiple"));
-    htr.appendChild(el("th", "num", "P/E"));
-    htr.appendChild(el("th", "num", "Implied value / share"));
-    thead.appendChild(htr);
-    table.appendChild(thead);
-
-    var tbody = document.createElement("tbody");
-    comps.multiples.forEach(function (m) {
-      var tr = document.createElement("tr");
-      tr.appendChild(el("td", "name", m.label));
-      tr.appendChild(el("td", "num", multipleFmt(m.pe)));
-      tr.appendChild(el("td", "num strong", price(eps * m.pe)));
-      tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
-
-    // Footer: where the DCF sits in P/E terms, so the two methods can be
-    // compared on one scale.
-    if (dcfIntrinsic && eps) {
-      var tfoot = document.createElement("tfoot");
-      var ftr = document.createElement("tr");
-      ftr.appendChild(el("td", "name", "DCF value implies"));
-      ftr.appendChild(el("td", "num strong", multipleFmt(dcfIntrinsic / eps)));
-      ftr.appendChild(el("td", "num strong", price(dcfIntrinsic)));
-      tfoot.appendChild(ftr);
-      table.appendChild(tfoot);
-    }
-
-    mount.innerHTML = "";
-    if (comps.eps_basis) mount.appendChild(el("p", "meta", "Earnings basis: " + comps.eps_basis));
-    var scroll = el("div", "table-scroll");
-    scroll.appendChild(table);
-    mount.appendChild(scroll);
-    if (comps.note) mount.appendChild(el("p", "panel-note", comps.note));
-  }
-
   function renderReport(data, notes) {
     notes = notes || {};
     var evald = evaluate(data);
@@ -488,7 +436,6 @@
     if (intrinsicEl) intrinsicEl.textContent = price(evald.intrinsic);
 
     renderScenarioTable(evald.scenarios, evald.intrinsic);
-    renderComps(notes.comps, evald.intrinsic);
     renderDrivers(notes.drivers, evald.scenarios);
     renderKeyInputs(data);
     return evald;
