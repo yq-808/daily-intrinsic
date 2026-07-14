@@ -271,8 +271,9 @@ def calculate_dcf(data):
         fcff = nopat + da - capex - delta_nwc
         fcffs.append(fcff)
 
-        # Discount factor
-        df = 1 / ((1 + wacc) ** (i + 1))
+        # Discount factor (mid-year convention: a cash flow booked in year n
+        # is received, on average, half-way through it, so discount at n-0.5)
+        df = 1 / ((1 + wacc) ** (i + 0.5))
         discount_factors.append(df)
 
         # PV of FCFF
@@ -283,7 +284,8 @@ def calculate_dcf(data):
         prev_revenue = revenue
         prev_nwc = nwc
 
-    # Terminal Value
+    # Terminal Value — discounted at the final mid-year factor (year N-0.5),
+    # consistent with the Gordon-growth mid-year convention.
     terminal_fcff = fcffs[-1] * (1 + terminal_growth)
     terminal_value = terminal_fcff / (wacc - terminal_growth)
     pv_terminal = terminal_value * discount_factors[-1]
@@ -391,7 +393,7 @@ def calculate_sensitivity(data, base_wacc, base_terminal_growth):
                 nwc_calc = rev * nwc_percent
                 d_nwc = nwc_calc - prev_nwc_calc
                 fc = nop + d_a - cap - d_nwc
-                df = 1 / ((1 + w) ** (i + 1))
+                df = 1 / ((1 + w) ** (i + 0.5))  # mid-year convention
                 sum_pv += fc * df
                 prev_rev = rev
                 prev_nwc_calc = nwc_calc
@@ -403,7 +405,7 @@ def calculate_sensitivity(data, base_wacc, base_terminal_growth):
                 row.append(None)
                 continue
             tv = term_fcff / (w - tg)
-            pv_tv = tv / ((1 + w) ** years)
+            pv_tv = tv / ((1 + w) ** (years - 0.5))  # mid-year convention
 
             ev = sum_pv + pv_tv
             eq_val = ev + cash - debt
@@ -623,7 +625,7 @@ def print_results(symbol, data, results):
     print("│" + " STEP 3: DISCOUNT TO PRESENT VALUE".ljust(W-2) + "│")
     print("├" + "─" * (W-2) + "┤")
     print("│" + "".ljust(W-2) + "│")
-    print("│" + f"  PV = FCFF ÷ (1 + WACC)^n    where WACC = {format_percent(results['wacc'])}".ljust(W-2) + "│")
+    print("│" + f"  PV = FCFF ÷ (1 + WACC)^(n-0.5)   [mid-year]   WACC = {format_percent(results['wacc'])}".ljust(W-2) + "│")
     print("│" + "".ljust(W-2) + "│")
     print("├" + "─" * (W-2) + "┤")
 
@@ -631,7 +633,7 @@ def print_results(symbol, data, results):
     row = f"│ {'DF':<8}"
     for i, df in enumerate(results["discount_factors"]):
         row += f"{df:>10.4f}"
-    row += "  ← 1/(1+r)^n"
+    row += "  ← 1/(1+r)^(n-0.5)"
     print(row.ljust(W-1) + "│")
 
     # PV FCFF
@@ -666,8 +668,8 @@ def print_results(symbol, data, results):
     print("│" + "".ljust(W-2) + "│")
     print("├" + "─" * (W-2) + "┤")
     print("│" + "".ljust(W-2) + "│")
-    print("│" + f"  PV(TV) = TV ÷ (1 + WACC)^{years}".ljust(W-2) + "│")
-    print("│" + f"         = {format_currency(results['terminal_value'])} ÷ (1 + {format_percent(results['wacc'])})^{years}".ljust(W-2) + "│")
+    print("│" + f"  PV(TV) = TV ÷ (1 + WACC)^(N-0.5)   [mid-year, N={years}]".ljust(W-2) + "│")
+    print("│" + f"         = {format_currency(results['terminal_value'])} ÷ (1 + {format_percent(results['wacc'])})^{years - 0.5}".ljust(W-2) + "│")
     print("│" + f"  ► PV(TV) = {format_currency(results['pv_terminal'])}".ljust(W-2) + "│")
     print("│" + "".ljust(W-2) + "│")
     print("└" + "─" * (W-2) + "┘")

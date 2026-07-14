@@ -276,4 +276,11 @@ Example:
 | WACC = We × Re + Wd × Rd × (1 - T) | Weighted Average Cost of Capital |
 | Re = Rf + β × ERP | Cost of Equity (CAPM) |
 | TV = FCFF_n × (1 + g) / (WACC - g) | Terminal Value (Gordon Growth) |
+| PV = FCFF_n / (1 + WACC)^(n − 0.5) | Discount to present (mid-year convention) |
+| PV(TV) = TV / (1 + WACC)^(N − 0.5) | Terminal value discounted at final mid-year factor |
 | Intrinsic Price = (EV + Cash - Debt) / Shares | Price per Share |
+
+**Mid-year convention:** cash flows are assumed to arrive half-way through each
+year (the realistic average), so year *n* is discounted at *n − 0.5* rather than
+*n*. This lifts value by ≈ (1 + WACC)^0.5 (~4% at an 8% WACC) versus year-end
+discounting, and matches standard banking/Damodaran practice.
