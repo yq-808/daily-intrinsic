@@ -64,7 +64,6 @@ def embed_json(data):
 def render_report(symbol, data, date_str, notes=None):
     sym = escape(symbol)
     method = escape(method_for(data))
-    weighted = data.get("scenarios") is not None
     notes = notes or {}
 
     comps_section = ""
@@ -108,14 +107,6 @@ def render_report(symbol, data, date_str, notes=None):
     </div>
     <div class="date-badge">{date_str}</div>
   </header>
-
-  <section class="hero">
-    <div class="card hero-card">
-      <div class="card-label">Intrinsic value / share</div>
-      <div class="card-value" id="dcf-intrinsic">…</div>
-      <div class="card-foot">{'probability-weighted DCF · mid-year' if weighted else 'DCF, single scenario · mid-year'}</div>
-    </div>
-  </section>
 
   <section>
     <h2>Scenario breakdown</h2>
@@ -261,17 +252,6 @@ h2 { font-size: 18px; margin: 36px 0 12px; letter-spacing: -.01em; }
   background: var(--panel); white-space: nowrap;
 }
 
-/* Hero intrinsic-value card */
-.hero { margin-top: 24px; }
-.hero-card {
-  border: 1px solid var(--border); border-radius: 14px; padding: 24px 20px;
-  background: var(--panel); box-shadow: var(--shadow); text-align: center;
-}
-.card-label { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-.hero-card .card-value { font-size: 44px; font-weight: 800; margin: 8px 0 4px;
-  letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-.card-foot { font-size: 12px; color: var(--muted); }
-
 /* Tables */
 .table-scroll { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 15px; }
@@ -309,7 +289,6 @@ table.compact td { padding: 8px 12px; }
 
 @media (max-width: 560px) {
   .rpt-head { flex-direction: column; }
-  .hero-card .card-value { font-size: 36px; }
 }
 """
 
