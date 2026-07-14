@@ -3,9 +3,9 @@
 Dated, back-of-the-envelope **intrinsic-value reports** for stocks — one HTML
 page per stock, per date, published as a static site via GitHub Pages.
 
-The numbers come from two portable valuation skills vendored under
-[`skills/`](skills/); a small generator turns their output into clean,
-shareable web pages.
+Each report is **valuation only** — no market price. The page ships the DCF
+*inputs* and computes the intrinsic value in your browser, so the numbers on the
+page are always a live function of the assumptions it carries.
 
 ## Layout
 
@@ -15,13 +15,15 @@ plain-intrinsic/
 │   ├── dcf/                     # DCF (FCFF) valuation skill + engine
 │   └── megawatt-pe-valuation/   # Earnings × P/E model for power / AI-infra
 ├── scripts/
-│   └── generate_report.py       # renders a dated HTML report + rebuilds the index
+│   └── generate_report.py       # writes a dated report page + rebuilds the index
 └── docs/                        # ← GitHub Pages site root (serve from main /docs)
     ├── index.html               # landing page, lists every report by stock & date
-    ├── assets/style.css
+    ├── assets/
+    │   ├── style.css
+    │   └── dcf.js               # client-side DCF engine (port of the dcf skill)
     └── reports/
-        ├── manifest.json        # machine-readable list of all reports
-        └── googl/2026-07-13.html
+        ├── manifest.json        # reports + their embedded inputs
+        └── googl/2026-07-14.html
 ```
 
 ## Generate a report
@@ -34,30 +36,27 @@ python3 scripts/generate_report.py GOOGL
 python3 scripts/generate_report.py GOOGL --date 2026-07-13
 ```
 
-Each run recomputes the DCF for the symbol using the engine in
-`skills/dcf/scripts/dcf_calculator.py`, writes
-`docs/reports/<symbol>/<date>.html`, records it in
-`docs/reports/manifest.json`, and rebuilds `docs/index.html`. To post a report
-for a new date, just run the command again with a new `--date` and commit.
+The generator does **no** financial math. Each run embeds the symbol's input
+JSON into `docs/reports/<symbol>/<date>.html`, records it in
+`docs/reports/manifest.json`, and rebuilds `docs/index.html`. The valuation
+table and probability-weighted intrinsic value are computed in the browser by
+[`docs/assets/dcf.js`](docs/assets/dcf.js) — a faithful port of the `dcf`
+skill's engine (`skills/dcf/scripts/dcf_calculator.py`). To post a report for a
+new date, run the command again with a new `--date` and commit.
 
 The symbol must have an input file at
 `skills/dcf/reference/inputs/<SYMBOL>.json` (GOOGL, MSFT, AAPL are included).
-Market quotes are read from `skills/dcf/reference/quotes/<SYMBOL>_quote.json`;
-each page labels the quote's snapshot date. Refreshing quotes/news/filings uses
-the skill's own `fetch_*.py` scripts and requires the relevant API keys
-(`FINNHUB_API_KEY` etc.).
+Refreshing the underlying financials uses the skill's own `fetch_*.py` scripts
+and requires an API key (`FINNHUB_API_KEY` in a gitignored `.env`).
 
 ## Publishing with GitHub Pages
 
-The repo is private for now. When you're ready to publish:
+The repo is **public** and GitHub Pages serves from `main` `/docs`, so the live
+site is:
 
-1. Repo **Settings → Pages**.
-2. **Source:** *Deploy from a branch*.
-3. **Branch:** `main`, **Folder:** `/docs`.
+**https://yq-808.github.io/plain-intrinsic/**
 
-The site then lives at `https://<owner>.github.io/plain-intrinsic/`. (While the
-repo is private, GitHub Pages requires a paid plan; making the repo public will
-serve it for free.)
+Pushing to `main` redeploys it automatically.
 
 ## Disclaimer
 
