@@ -283,15 +283,15 @@
         return Array.isArray(c) ? c.map(pct) : [pct(c)];
       }
     },
-    da: { label: "D&A (% of revenue)", get: function (r) { return pct(r.base_year.da_percent); } },
-    nwc: { label: "Net working capital (% of revenue)", get: function (r) { return pct(r.base_year.nwc_percent); } },
-    tax: { label: "Tax rate", get: function (r) { return pct(r.assumptions.tax_rate); } },
-    rf: { label: "Risk-free rate", get: function (r) { return pct(r.wacc_inputs.risk_free_rate); } },
-    erp: { label: "Equity risk premium", get: function (r) { return pct(r.wacc_inputs.equity_risk_premium); } },
-    beta: { label: "Beta", get: function (r) { return r.wacc_inputs.beta.toFixed(2); } },
-    wacc: { label: "WACC (derived)", get: function (r, s) { return pct(s.wacc); } },
-    terminal_g: { label: "Terminal growth", get: function (r, s) { return pct(s.terminalGrowth); } },
-    probability: { label: "Scenario probability", get: function (r, s) { return pct(s.probability); } }
+    da: { label: "D&A (% of revenue)", short: "D&A", get: function (r) { return pct(r.base_year.da_percent); } },
+    nwc: { label: "Net working capital (% of revenue)", short: "NWC", get: function (r) { return pct(r.base_year.nwc_percent); } },
+    tax: { label: "Tax rate", short: "Tax", get: function (r) { return pct(r.assumptions.tax_rate); } },
+    rf: { label: "Risk-free rate", short: "Rf", get: function (r) { return pct(r.wacc_inputs.risk_free_rate); } },
+    erp: { label: "Equity risk premium", short: "ERP", get: function (r) { return pct(r.wacc_inputs.equity_risk_premium); } },
+    beta: { label: "Beta", short: "Beta", get: function (r) { return r.wacc_inputs.beta.toFixed(2); } },
+    wacc: { label: "WACC (derived)", short: "WACC", get: function (r, s) { return pct(s.wacc); } },
+    terminal_g: { label: "Terminal growth", short: "Term. g", get: function (r, s) { return pct(s.terminalGrowth); } },
+    probability: { label: "Scenario probability", short: "Prob.", get: function (r, s) { return pct(s.probability); } }
   };
 
   // ------------------------------------------------------------- DOM helpers
@@ -342,65 +342,94 @@
     });
   }
 
-  // Assumptions as Bear/Base/Bull tabs. Each driver shows its value(s) for the
-  // active scenario — list inputs (growth, margins, capex) show the full
-  // per-year series — plus a plain-English "how defensible" read.
+  function scenarioTable(scenarios, headerCells, rowValsFor) {
+    var scroll = el("div", "table-scroll");
+    var table = document.createElement("table");
+    var thead = document.createElement("thead");
+    var htr = document.createElement("tr");
+    htr.appendChild(el("th", null, "Scenario"));
+    headerCells.forEach(function (h) { htr.appendChild(el("th", "num", h)); });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+    var tbody = document.createElement("tbody");
+    scenarios.forEach(function (s) {
+      var tr = document.createElement("tr");
+      tr.appendChild(el("td", "name", s.name));
+      rowValsFor(s).forEach(function (v) { tr.appendChild(el("td", "num", v)); });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    scroll.appendChild(table);
+    return scroll;
+  }
+
+  // Assumptions as tables — one row per scenario (Bear / Base / Bull). Each
+  // list input (growth, margins, capex) gets its own table with the full
+  // Y1–Yn series across the columns; the scalar inputs share one table. Each
+  // carries a plain-English "how defensible" read.
   function renderDrivers(driverNotes, scenarios) {
     var mount = document.getElementById("dcf-drivers");
     if (!mount || !Array.isArray(driverNotes) || driverNotes.length === 0) return;
     mount.innerHTML = "";
 
-    var bar = el("div", "tab-bar");
-    bar.setAttribute("role", "tablist");
-    var panels = el("div", "tab-panels");
-
-    scenarios.forEach(function (s, idx) {
-      var btn = el("button", "tab" + (idx === 0 ? " active" : ""), s.name);
-      btn.type = "button";
-      btn.setAttribute("data-i", idx);
-      bar.appendChild(btn);
-
-      var panel = el("div", "tab-panel" + (idx === 0 ? " active" : ""));
-      driverNotes.forEach(function (dn) {
-        var def = DRIVERS[dn.key];
-        if (!def) return;
-        var val;
-        try { val = def.get(s.raw, s); } catch (e) { val = "—"; }
-
-        var item = el("div", "assump");
-        var head = el("div", "assump-head");
-        head.appendChild(el("span", "assump-label", dn.label || def.label));
-        if (dn.verdict) head.appendChild(el("span", "verdict", dn.verdict));
-        item.appendChild(head);
-
-        if (Array.isArray(val)) {
-          var strip = el("div", "yr-strip");
-          val.forEach(function (v, i) {
-            var cell = el("span", "yr");
-            cell.appendChild(el("span", "yr-n", "Y" + (i + 1)));
-            cell.appendChild(el("span", "yr-v", v));
-            strip.appendChild(cell);
-          });
-          item.appendChild(strip);
-        } else {
-          item.appendChild(el("div", "assump-val", val));
-        }
-        if (dn.comment) item.appendChild(el("p", "read-note", dn.comment));
-        panel.appendChild(item);
+    var enriched = driverNotes.map(function (dn) {
+      var def = DRIVERS[dn.key];
+      if (!def) return null;
+      var vals = scenarios.map(function (s) {
+        try { return def.get(s.raw, s); } catch (e) { return "—"; }
       });
-      panels.appendChild(panel);
+      return { dn: dn, def: def, vals: vals, isList: Array.isArray(vals[0]) };
+    }).filter(Boolean);
+
+    // One table per list-valued input: 3 scenario rows × Y1..Yn columns.
+    enriched.filter(function (e) { return e.isList; }).forEach(function (e) {
+      var block = el("div", "assump");
+      var head = el("div", "assump-head");
+      head.appendChild(el("span", "assump-label", e.dn.label || e.def.label));
+      if (e.dn.verdict) head.appendChild(el("span", "verdict", e.dn.verdict));
+      block.appendChild(head);
+
+      var n = e.vals[0].length;
+      var years = [];
+      for (var y = 0; y < n; y++) years.push("Y" + (y + 1));
+      var byScenario = {};
+      scenarios.forEach(function (s, si) { byScenario[s.name] = e.vals[si]; });
+      block.appendChild(scenarioTable(scenarios, years, function (s) { return byScenario[s.name]; }));
+
+      if (e.dn.comment) block.appendChild(el("p", "read-note", e.dn.comment));
+      mount.appendChild(block);
     });
 
-    bar.addEventListener("click", function (e) {
-      var b = e.target && e.target.closest ? e.target.closest(".tab") : null;
-      if (!b || !bar.contains(b)) return;
-      var i = +b.getAttribute("data-i");
-      Array.prototype.forEach.call(bar.children, function (x, xi) { x.classList.toggle("active", xi === i); });
-      Array.prototype.forEach.call(panels.children, function (x, xi) { x.classList.toggle("active", xi === i); });
-    });
+    // Scalar inputs share one table: 3 scenario rows × one column per input.
+    var scalars = enriched.filter(function (e) { return !e.isList; });
+    if (scalars.length) {
+      var block = el("div", "assump");
+      var head = el("div", "assump-head");
+      head.appendChild(el("span", "assump-label", "Cost of capital & other inputs"));
+      block.appendChild(head);
 
-    mount.appendChild(bar);
-    mount.appendChild(panels);
+      var headers = scalars.map(function (e) { return e.def.short || e.dn.label || e.def.label; });
+      var byScenario = {};
+      scenarios.forEach(function (s, si) {
+        byScenario[s.name] = scalars.map(function (e) { return e.vals[si]; });
+      });
+      block.appendChild(scenarioTable(scenarios, headers, function (s) { return byScenario[s.name]; }));
+
+      // Per-input reads beneath the table.
+      var reads = scalars.filter(function (e) { return e.dn.verdict || e.dn.comment; });
+      if (reads.length) {
+        var list = el("div", "reads");
+        reads.forEach(function (e) {
+          var p = el("p", "read-line");
+          p.appendChild(el("span", "read-key", e.dn.label || e.def.label));
+          if (e.dn.verdict) { p.appendChild(document.createTextNode(" ")); p.appendChild(el("span", "verdict", e.dn.verdict)); }
+          if (e.dn.comment) p.appendChild(el("span", "read-note", " " + e.dn.comment));
+          list.appendChild(p);
+        });
+        block.appendChild(list);
+      }
+      mount.appendChild(block);
+    }
   }
 
   // Relative-valuation cross-check: forward EPS x a range of peer multiples.
