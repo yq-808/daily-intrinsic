@@ -74,8 +74,8 @@
     {
       "key": "probability",
       "label": "Scenario probability",
-      "verdict": "The market is pricing our Bull as its base case",
-      "comment": "Weights are Bear 20% / Base 45% / Bull 35%. Read against the tape, the honest takeaway: today's market valuation sits up at our *Bull* scenario — i.e. the market effectively assigns near-100% to the AI-supercycle path (double-digit growth, 40% margins, a quality-level discount rate) that we give 35%. That is either correct (the AI upgrade cycle plus Services re-rates Apple structurally) or it is Apple priced for flawless execution with little margin of safety. Our weights deliberately keep real probability on the Base and Bear paths; the gap between our weighted value and the market IS the AI optimism, priced."
+      "verdict": "Re-tilted bullish to match the cohort · but the market prices ~100% Bull",
+      "comment": "Weights are now Bear 15% / Base 45% / Bull 40%, in line with the AI cohort (GOOGL 15/45/40, MSFT 13/45/42). The earlier 20/45/35 singled Apple out as more bearish without a strong reason once you accept the same AI/Services re-rating that drives the others — so this evens it up. But note the ceiling: a probability-weighted value can never exceed its best scenario, so weighting caps out at the Bull case (~$294) no matter how bullish the tilt (even 100% Bull only reaches ~$294). A market at ~$300 is therefore valuing Apple at essentially 100% Bull — richer than even this cohort-consistent weighting. The remaining gap is not a weights problem: it says the market's *base case* is our Bull — double-digit growth, ~40% margins, and a quality-level (~7%) discount rate. Closing it would mean asserting those as the central case, i.e. agreeing the fundamentals justify the price rather than just weighting scenarios."
     }
   ]
 }

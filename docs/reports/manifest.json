@@ -23,7 +23,7 @@
       "scenarios": [
         {
           "name": "Bear",
-          "probability": 0.2,
+          "probability": 0.15,
           "base_year": {
             "nwc_percent": 0.01
           },
@@ -135,7 +135,7 @@
         },
         {
           "name": "Bull",
-          "probability": 0.35,
+          "probability": 0.4,
           "base_year": {
             "nwc_percent": -0.01
           },
