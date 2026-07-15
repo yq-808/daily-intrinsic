@@ -1,7 +1,7 @@
 {
   "symbol": "AAPL",
   "date": "2026-07-15",
-  "generated": "2026-07-15T10:08:21",
+  "generated": "2026-07-15T14:20:27",
   "conventions": "Mid-year discounting convention. Valuation only \u2014 no live market price is used.",
   "input": {
     "symbol": "AAPL",
@@ -14,41 +14,41 @@
       "tax_rate": 0.21
     },
     "balance_sheet": {
-      "cash": "35.9B",
+      "cash": "156.6B",
       "debt": "78.3B",
       "diluted_shares": "14.8B"
     },
     "scenarios": [
       {
         "name": "Bear",
-        "probability": 0.25,
+        "probability": 0.2,
         "base_year": {
           "nwc_percent": 0.01
         },
         "assumptions": {
           "growth_rates": [
+            0.04,
+            0.038,
+            0.036,
+            0.034,
+            0.032,
             0.03,
-            0.029,
             0.028,
-            0.027,
             0.026,
-            0.025,
-            0.024,
             0.023,
-            0.021,
             0.02
           ],
           "ebit_margins": [
-            0.315,
-            0.314,
-            0.314,
-            0.313,
-            0.313,
-            0.312,
-            0.312,
-            0.311,
-            0.311,
-            0.31
+            0.32,
+            0.32,
+            0.321,
+            0.321,
+            0.322,
+            0.322,
+            0.323,
+            0.323,
+            0.324,
+            0.325
           ],
           "capex_percent": [
             0.032,
@@ -66,7 +66,7 @@
         "wacc_inputs": {
           "risk_free_rate": 0.045,
           "equity_risk_premium": 0.043,
-          "beta": 1.15,
+          "beta": 1.2,
           "cost_of_debt": 0.05,
           "debt_weight": 0.03,
           "equity_weight": 0.97
@@ -83,28 +83,28 @@
         },
         "assumptions": {
           "growth_rates": [
+            0.08,
+            0.075,
+            0.07,
+            0.065,
             0.06,
-            0.057,
-            0.054,
-            0.051,
-            0.048,
-            0.045,
-            0.042,
-            0.038,
-            0.034,
-            0.03
+            0.055,
+            0.05,
+            0.046,
+            0.043,
+            0.04
           ],
           "ebit_margins": [
             0.32,
-            0.322,
-            0.323,
-            0.325,
             0.326,
-            0.328,
-            0.329,
-            0.331,
-            0.333,
-            0.335
+            0.332,
+            0.338,
+            0.344,
+            0.35,
+            0.356,
+            0.36,
+            0.365,
+            0.37
           ],
           "capex_percent": [
             0.032,
@@ -128,39 +128,39 @@
           "equity_weight": 0.98
         },
         "terminal": {
-          "growth_rate": 0.025
+          "growth_rate": 0.03
         }
       },
       {
         "name": "Bull",
-        "probability": 0.3,
+        "probability": 0.35,
         "base_year": {
           "nwc_percent": -0.01
         },
         "assumptions": {
           "growth_rates": [
+            0.12,
+            0.112,
+            0.104,
+            0.096,
+            0.088,
             0.08,
-            0.075,
-            0.071,
-            0.066,
-            0.062,
+            0.072,
+            0.064,
             0.057,
-            0.053,
-            0.048,
-            0.044,
-            0.04
+            0.05
           ],
           "ebit_margins": [
             0.325,
-            0.329,
             0.333,
-            0.337,
             0.341,
-            0.345,
             0.349,
-            0.352,
-            0.356,
-            0.36
+            0.357,
+            0.365,
+            0.373,
+            0.381,
+            0.39,
+            0.4
           ],
           "capex_percent": [
             0.034,
@@ -178,13 +178,13 @@
         "wacc_inputs": {
           "risk_free_rate": 0.044,
           "equity_risk_premium": 0.04,
-          "beta": 1.05,
+          "beta": 1.0,
           "cost_of_debt": 0.046,
           "debt_weight": 0.02,
           "equity_weight": 0.98
         },
         "terminal": {
-          "growth_rate": 0.03
+          "growth_rate": 0.035
         }
       }
     ]
@@ -195,20 +195,20 @@
       {
         "key": "growth",
         "label": "Revenue growth (Yr 1\u201310)",
-        "verdict": "Cautious but reasonable",
-        "comment": "Apple is a mature hardware franchise; recent growth has run low-to-mid single digits, with Services (~12\u201314%) doing the heavy lifting over a roughly flat iPhone. Each scenario fades to mature growth by Yr 10. Base \u2248 trend; Bull assumes an AI-driven iPhone upgrade cycle plus continued Services mix-shift; Bear reflects hardware saturation and China softness."
+        "verdict": "Re-read upward (Services + AI cycle)",
+        "comment": "The earlier read treated Apple as a flat hardware franchise fading to ~3%. That under-modeled two things the market is capitalizing: Services compounding at low-double-digits (now a large, sticky share of the mix) and an AI-driven iPhone upgrade cycle refreshing a >1.5B-device installed base. Base now starts ~8% and fades to 4%; Bull runs a genuine supercycle (~12% \u2192 5%); Bear still reflects saturation and China risk (~4% \u2192 2%)."
       },
       {
         "key": "margin",
         "label": "EBIT margin (Yr 1\u201310)",
-        "verdict": "Defensible",
-        "comment": "Apple already runs a ~32% operating margin. Expansion here is a Services-mix story (software/subscriptions carry far higher margins than hardware), not operating leverage on capex. Bull ending near 36% is achievable if Services keeps outgrowing hardware; Bear holds roughly flat."
+        "verdict": "Services mix drives expansion",
+        "comment": "This is the other half of what was missing. Services gross margins run ~70% versus ~37% for hardware, so as Services outgrows product the *blended* operating margin should climb \u2014 not stay pinned near 32%. Base expands toward 37% over the decade; Bull toward 40% if AI features accelerate the mix-shift. Defensible given the trajectory, though 40% would be an all-time high."
       },
       {
         "key": "capex",
         "label": "Capex (Yr 1\u201310, % rev)",
         "verdict": "Structurally low",
-        "comment": "~3% of revenue \u2014 Apple is asset-light and outsources manufacturing, a deliberate contrast to the AI-infra names (MSFT/GOOGL at 15\u201328%). Not a swing factor here; the model barely moves on capex."
+        "comment": "~3% of revenue \u2014 Apple is asset-light and outsources manufacturing, a deliberate contrast to the AI-infra names (MSFT/GOOGL at 15\u201328%). Not a swing factor; the model barely moves on capex."
       },
       {
         "key": "da",
@@ -220,7 +220,13 @@
         "key": "nwc",
         "label": "Net working capital (% of revenue)",
         "verdict": "A genuine Apple edge",
-        "comment": "Apple famously runs *negative* working capital \u2014 payables and deferred revenue exceed receivables and inventory \u2014 so incremental growth is partly self-funding (a source of cash). Modeled from a small drag in Bear (+1%) to a small source in Bull (\u22121%). Realistic, and a real advantage over most peers."
+        "comment": "Apple famously runs *negative* working capital \u2014 payables and deferred revenue exceed receivables and inventory \u2014 so incremental growth is partly self-funding (a source of cash). Modeled from a small drag in Bear (+1%) to a small source in Bull (\u22121%). A real advantage over most peers."
+      },
+      {
+        "key": "netcash",
+        "label": "Net cash (cash + securities \u2212 debt)",
+        "verdict": "Corrected \u2192 this was the model's clear error",
+        "comment": "The previous input counted only $35.9B of cash and so treated Apple \u2014 the most cash-rich company on earth \u2014 as a NET BORROWER of ~$42B. It ignored Apple's ~$120B marketable-securities portfolio (current + long-term investments). Cash is now stated as cash + marketable securities (~$156.6B), leaving Apple net-cash by ~$78B. The fix adds the whole ~$120B swing (~$8/share) straight to equity value. Real, unambiguous, and it should never have been missing."
       },
       {
         "key": "tax",
@@ -242,25 +248,25 @@
       {
         "key": "beta",
         "label": "Beta",
-        "comment": "~1.05\u20131.15; Apple carries slightly more market sensitivity than the flagship software names. Lower in the Bull case (less perceived risk)."
+        "comment": "~1.0\u20131.2; Apple carries slightly more market sensitivity than the flagship software names. Lower in the Bull case (a quality/safety bid compresses perceived risk)."
       },
       {
         "key": "wacc",
         "label": "WACC (derived)",
-        "verdict": "Solid",
-        "comment": "CAPM build-up nets to ~8.3\u20139.3% across scenarios \u2014 a touch higher than MSFT/GOOGL because of the higher beta and higher risk-free assumption. Lower WACC in Bull compounds with higher growth to lift value."
+        "verdict": "Solid \u2014 and the swing factor vs the market",
+        "comment": "CAPM build-up nets to ~8.3\u20139.5% across scenarios. A durable, cash-generative franchise like Apple arguably earns a lower discount rate than this; every 1% off WACC lifts the terminal value materially. If the market is applying a ~7% 'quality' discount rate, that alone explains a large part of the gap to a fundamentals DCF."
       },
       {
         "key": "terminal_g",
         "label": "Terminal growth",
-        "verdict": "Comfortable",
-        "comment": "Terminal g should not exceed the ~4% risk-free / long-run nominal GDP. Even Bull's 3.0% sits well below that ceiling \u2014 appropriately, given a mature franchise."
+        "verdict": "Base OK \u00b7 Bull at the ceiling",
+        "comment": "Terminal g should not exceed the ~4% risk-free / long-run nominal GDP. Bull's 3.5% now sits right at that edge \u2014 appropriate only if you truly believe the AI/Services franchise still out-grows the economy in perpetuity."
       },
       {
         "key": "probability",
         "label": "Scenario probability",
-        "verdict": "Balanced-to-cautious (higher Bear weight)",
-        "comment": "Weights are Bear 25% / Base 45% / Bull 30% \u2014 deliberately less bull-tilted than the AI-infra names. Apple's upside is not a capex-driven cloud re-acceleration but a hardware-refresh-plus-Services story, and the downside risks are concrete: iPhone maturity, China demand and supply-chain exposure, and the regulatory overhang on the Google search-payment (~$20B/yr of near-pure-profit Services revenue). The market's ~30\u00d7 earnings multiple against mid-single-digit growth already prices a quality/buyback premium and an AI supercycle; the honest judgment call is whether 25% is enough weight on the Bear path \u2014 arguably it should be higher, not lower."
+        "verdict": "The market is pricing our Bull as its base case",
+        "comment": "Weights are Bear 20% / Base 45% / Bull 35%. Read against the tape, the honest takeaway: today's market valuation sits up at our *Bull* scenario \u2014 i.e. the market effectively assigns near-100% to the AI-supercycle path (double-digit growth, 40% margins, a quality-level discount rate) that we give 35%. That is either correct (the AI upgrade cycle plus Services re-rates Apple structurally) or it is Apple priced for flawless execution with little margin of safety. Our weights deliberately keep real probability on the Base and Bear paths; the gap between our weighted value and the market IS the AI optimism, priced."
       }
     ]
   }

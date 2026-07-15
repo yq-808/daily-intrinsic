@@ -279,6 +279,10 @@
     },
     da: { label: "D&A (% of revenue)", short: "D&A", get: function (r) { return pct(r.base_year.da_percent); } },
     nwc: { label: "Net working capital (% of revenue)", short: "NWC", get: function (r) { return pct(r.base_year.nwc_percent); } },
+    netcash: {
+      label: "Net cash (cash + securities − debt)", short: "Net cash",
+      get: function (r) { var bs = r.balance_sheet || {}; return money(parseValue(bs.cash) - parseValue(bs.debt)); }
+    },
     tax: { label: "Tax rate", short: "Tax", get: function (r) { return pct(r.assumptions.tax_rate); } },
     rf: { label: "Risk-free rate", short: "Rf", get: function (r) { return pct(r.wacc_inputs.risk_free_rate); } },
     erp: { label: "Equity risk premium", short: "ERP", get: function (r) { return pct(r.wacc_inputs.equity_risk_premium); } },

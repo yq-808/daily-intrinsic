@@ -4,20 +4,20 @@
     {
       "key": "growth",
       "label": "Revenue growth (Yr 1–10)",
-      "verdict": "Cautious but reasonable",
-      "comment": "Apple is a mature hardware franchise; recent growth has run low-to-mid single digits, with Services (~12–14%) doing the heavy lifting over a roughly flat iPhone. Each scenario fades to mature growth by Yr 10. Base ≈ trend; Bull assumes an AI-driven iPhone upgrade cycle plus continued Services mix-shift; Bear reflects hardware saturation and China softness."
+      "verdict": "Re-read upward (Services + AI cycle)",
+      "comment": "The earlier read treated Apple as a flat hardware franchise fading to ~3%. That under-modeled two things the market is capitalizing: Services compounding at low-double-digits (now a large, sticky share of the mix) and an AI-driven iPhone upgrade cycle refreshing a >1.5B-device installed base. Base now starts ~8% and fades to 4%; Bull runs a genuine supercycle (~12% → 5%); Bear still reflects saturation and China risk (~4% → 2%)."
     },
     {
       "key": "margin",
       "label": "EBIT margin (Yr 1–10)",
-      "verdict": "Defensible",
-      "comment": "Apple already runs a ~32% operating margin. Expansion here is a Services-mix story (software/subscriptions carry far higher margins than hardware), not operating leverage on capex. Bull ending near 36% is achievable if Services keeps outgrowing hardware; Bear holds roughly flat."
+      "verdict": "Services mix drives expansion",
+      "comment": "This is the other half of what was missing. Services gross margins run ~70% versus ~37% for hardware, so as Services outgrows product the *blended* operating margin should climb — not stay pinned near 32%. Base expands toward 37% over the decade; Bull toward 40% if AI features accelerate the mix-shift. Defensible given the trajectory, though 40% would be an all-time high."
     },
     {
       "key": "capex",
       "label": "Capex (Yr 1–10, % rev)",
       "verdict": "Structurally low",
-      "comment": "~3% of revenue — Apple is asset-light and outsources manufacturing, a deliberate contrast to the AI-infra names (MSFT/GOOGL at 15–28%). Not a swing factor here; the model barely moves on capex."
+      "comment": "~3% of revenue — Apple is asset-light and outsources manufacturing, a deliberate contrast to the AI-infra names (MSFT/GOOGL at 15–28%). Not a swing factor; the model barely moves on capex."
     },
     {
       "key": "da",
@@ -29,7 +29,13 @@
       "key": "nwc",
       "label": "Net working capital (% of revenue)",
       "verdict": "A genuine Apple edge",
-      "comment": "Apple famously runs *negative* working capital — payables and deferred revenue exceed receivables and inventory — so incremental growth is partly self-funding (a source of cash). Modeled from a small drag in Bear (+1%) to a small source in Bull (−1%). Realistic, and a real advantage over most peers."
+      "comment": "Apple famously runs *negative* working capital — payables and deferred revenue exceed receivables and inventory — so incremental growth is partly self-funding (a source of cash). Modeled from a small drag in Bear (+1%) to a small source in Bull (−1%). A real advantage over most peers."
+    },
+    {
+      "key": "netcash",
+      "label": "Net cash (cash + securities − debt)",
+      "verdict": "Corrected → this was the model's clear error",
+      "comment": "The previous input counted only $35.9B of cash and so treated Apple — the most cash-rich company on earth — as a NET BORROWER of ~$42B. It ignored Apple's ~$120B marketable-securities portfolio (current + long-term investments). Cash is now stated as cash + marketable securities (~$156.6B), leaving Apple net-cash by ~$78B. The fix adds the whole ~$120B swing (~$8/share) straight to equity value. Real, unambiguous, and it should never have been missing."
     },
     {
       "key": "tax",
@@ -51,25 +57,25 @@
     {
       "key": "beta",
       "label": "Beta",
-      "comment": "~1.05–1.15; Apple carries slightly more market sensitivity than the flagship software names. Lower in the Bull case (less perceived risk)."
+      "comment": "~1.0–1.2; Apple carries slightly more market sensitivity than the flagship software names. Lower in the Bull case (a quality/safety bid compresses perceived risk)."
     },
     {
       "key": "wacc",
       "label": "WACC (derived)",
-      "verdict": "Solid",
-      "comment": "CAPM build-up nets to ~8.3–9.3% across scenarios — a touch higher than MSFT/GOOGL because of the higher beta and higher risk-free assumption. Lower WACC in Bull compounds with higher growth to lift value."
+      "verdict": "Solid — and the swing factor vs the market",
+      "comment": "CAPM build-up nets to ~8.3–9.5% across scenarios. A durable, cash-generative franchise like Apple arguably earns a lower discount rate than this; every 1% off WACC lifts the terminal value materially. If the market is applying a ~7% 'quality' discount rate, that alone explains a large part of the gap to a fundamentals DCF."
     },
     {
       "key": "terminal_g",
       "label": "Terminal growth",
-      "verdict": "Comfortable",
-      "comment": "Terminal g should not exceed the ~4% risk-free / long-run nominal GDP. Even Bull's 3.0% sits well below that ceiling — appropriately, given a mature franchise."
+      "verdict": "Base OK · Bull at the ceiling",
+      "comment": "Terminal g should not exceed the ~4% risk-free / long-run nominal GDP. Bull's 3.5% now sits right at that edge — appropriate only if you truly believe the AI/Services franchise still out-grows the economy in perpetuity."
     },
     {
       "key": "probability",
       "label": "Scenario probability",
-      "verdict": "Balanced-to-cautious (higher Bear weight)",
-      "comment": "Weights are Bear 25% / Base 45% / Bull 30% — deliberately less bull-tilted than the AI-infra names. Apple's upside is not a capex-driven cloud re-acceleration but a hardware-refresh-plus-Services story, and the downside risks are concrete: iPhone maturity, China demand and supply-chain exposure, and the regulatory overhang on the Google search-payment (~$20B/yr of near-pure-profit Services revenue). The market's ~30× earnings multiple against mid-single-digit growth already prices a quality/buyback premium and an AI supercycle; the honest judgment call is whether 25% is enough weight on the Bear path — arguably it should be higher, not lower."
+      "verdict": "The market is pricing our Bull as its base case",
+      "comment": "Weights are Bear 20% / Base 45% / Bull 35%. Read against the tape, the honest takeaway: today's market valuation sits up at our *Bull* scenario — i.e. the market effectively assigns near-100% to the AI-supercycle path (double-digit growth, 40% margins, a quality-level discount rate) that we give 35%. That is either correct (the AI upgrade cycle plus Services re-rates Apple structurally) or it is Apple priced for flawless execution with little margin of safety. Our weights deliberately keep real probability on the Base and Bear paths; the gap between our weighted value and the market IS the AI optimism, priced."
     }
   ]
 }
