@@ -1,4 +1,4 @@
-# daily-intrinsic
+# daily-val
 
 Dated, back-of-the-envelope **intrinsic-value reports** for stocks — one HTML
 page per stock, per date, published as a static site via GitHub Pages.
@@ -26,7 +26,7 @@ generating tomorrow's report; the snapshot is the copy of record.
 ## Layout
 
 ```
-daily-intrinsic/
+daily-val/
 ├── CLAUDE.md                    # project rules (reports are static daily snapshots)
 ├── skills/
 │   ├── dcf/                     # DCF (FCFF) valuation skill + engine
@@ -79,7 +79,7 @@ uses the skill's own `fetch_*.py` scripts and requires an API key
 The repo is **public** and GitHub Pages serves from `main` `/docs`, so the live
 site is:
 
-**https://yq-808.github.io/daily-intrinsic/**
+**https://yq-808.github.io/daily-val/**
 
 Pushing to `main` redeploys it automatically.
 

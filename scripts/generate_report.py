@@ -121,7 +121,7 @@ def render_report(symbol, data, date_str, notes=None, snapshot_name=None):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{sym} valuation — {date_str} · daily-intrinsic</title>
+<title>{sym} valuation — {date_str} · daily-val</title>
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
@@ -172,7 +172,7 @@ def render_report(symbol, data, date_str, notes=None, snapshot_name=None):
     <p class="meta">{escape(CONVENTIONS)}</p>
     <p class="snapshot">This report is a frozen daily snapshot. →
     <a href="{escape(snapshot_name)}">Inputs, probabilities &amp; evaluation behind this page</a></p>
-    <p class="gen">Generated {date_str} · daily-intrinsic</p>
+    <p class="gen">Generated {date_str} · daily-val</p>
   </footer>
 </main>
 <script type="application/json" id="dcf-input">{embed_json(data)}</script>{notes_script}
@@ -190,13 +190,13 @@ def render_index(entries):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>daily-intrinsic · valuation reports</title>
+<title>daily-val · valuation reports</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <main class="wrap">
   <header class="site-head">
-    <h1>daily&#8209;intrinsic</h1>
+    <h1>daily&#8209;val</h1>
     <p class="tagline">Dated, back-of-the-envelope intrinsic-value reports.
     One page per stock, per date — each a frozen daily snapshot. Valuation only —
     no market price.</p>

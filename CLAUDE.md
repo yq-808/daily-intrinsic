@@ -1,4 +1,4 @@
-# daily-intrinsic — project rules
+# daily-val — project rules
 
 A static site of dated, valuation-only DCF reports: one HTML page per stock, per
 date, published via GitHub Pages from `main` `/docs`.
