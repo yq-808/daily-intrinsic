@@ -17,7 +17,7 @@
       "name": "Base",
       "probability": 1,
       "fundamentals": { "eps": 115, "ebitda": "150B", "revenue": "195B", "bvps": 160 },
-      "multiples": { "pe": 10, "ev_ebitda": 8, "pb": 4, "ev_sales": 5 }
+      "multiples": { "pe": 7, "ev_ebitda": 8, "pb": 4, "ev_sales": 5 }
     }
   ]
 }

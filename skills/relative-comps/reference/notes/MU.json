@@ -8,8 +8,8 @@
     },
     {
       "key": "pe",
-      "label": "P/E 10×",
-      "comment": "A premium to peers' ~5× — for MU's US listing, better shareholder returns, and an AI-memory re-rating."
+      "label": "P/E 7×",
+      "comment": "About a 35% premium to peers' ~5× — MU's long-run average premium for its US listing and better shareholder returns. We deliberately stop there rather than layering an AI re-rating on top, to stay consistent with the peer-level EV/EBITDA (a business re-rating would have to lift that too)."
     },
     {
       "key": "ev_ebitda",
