@@ -1,13 +1,14 @@
 {
   "symbol": "MU",
   "date": "2026-07-20",
-  "generated": "2026-07-20T16:31:23",
+  "generated": "2026-07-21T11:04:58",
   "conventions": "Peer-multiple relative valuation \u2014 fair value is the average of the per-multiple implied prices. Valuation only \u2014 no live market price is used.",
   "input": {
     "symbol": "MU",
     "method": "comps",
     "anchor": "FY2027",
     "peer_group": "Legacy memory (SK Hynix, Samsung)",
+    "fundamentals_source": "The FY2027 figures below are Wall Street analyst consensus estimates \u2014 the model does no forecasting of its own. Consensus is unusually split this cycle (FY2027 EPS estimates run from ~$98 to ~$150), so the forward figure is the softest, highest-impact input: change the estimate you feed in and the fair value moves directly.",
     "peers": [
       {
         "name": "SK Hynix",

@@ -324,6 +324,8 @@
     if (methodEl) methodEl.textContent = evald.method;
     var fvEl = document.getElementById("cmp-fairvalue");
     if (fvEl) fvEl.textContent = price(evald.intrinsic);
+    var srcEl = document.getElementById("cmp-source");
+    if (srcEl && data.fundamentals_source) srcEl.textContent = data.fundamentals_source;
     renderPeers(evald);
     renderInputs(evald, notes);
     renderCalc(evald);

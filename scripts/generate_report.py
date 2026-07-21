@@ -263,8 +263,10 @@ def render_comps_report(symbol, data, date_str, notes=None, snapshot_name=None):
 
   <section>
     <h2>2 · Our numbers for {sym}</h2>
-    <p class="meta">For each multiple we take {sym}'s expected {anchor} figure and
-    apply a multiple, chosen using the peer range above as a reference.</p>
+    <p class="meta">For each multiple we take {sym}'s expected {anchor} figure —
+    analyst consensus estimates, not our own forecast — and apply a multiple,
+    chosen using the peer range above as a reference.</p>
+    <p class="meta" id="cmp-source"></p>
     <div id="cmp-inputs"></div>
   </section>
 
